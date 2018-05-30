@@ -12,6 +12,6 @@ int main(int argc, char const *argv[])
 	std::ifstream inf;
 	inf.open("input.txt");
 	map.readFromStream(inf);
-	map.printMap(5);
+	map.printMap(2);
 	system("pause");
 }

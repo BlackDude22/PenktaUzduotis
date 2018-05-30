@@ -45,7 +45,7 @@ public:
 		std::string line;
 		unsigned int i = 1;
 		while (getline(input_stream, line)){
-			filterLine(line);
+			filterLineBL(line);
 			std::istringstream ss(line);
             std::string word;
             while(ss >> word)
@@ -65,7 +65,7 @@ public:
 	}
 
 private:
-	std::string filterLine(std::string & line){
+	std::string filterLineWL(std::string & line){
 		for (size_t i = 0; i < line.size(); i++){
 			const char c = line.at(i);
 			if((c < 65) || (c > 90 && c < 97) || (c > 122))
@@ -75,14 +75,14 @@ private:
 		return line;
 	}
 
-	// std::string filterLine(std::string line){
-	// 	// setlocale(LC_ALL, "Lithuanian");
-	// 	const std::string filter = "0123456789/*-+.`~!@#$%^&*()_-=[]{}\\|\'\":;<>?,.";
-	// 	for (int i = 0; i < filter.size(); i++){
-	// 		replace(line.begin(), line.end(), filter.at(i), ' ');
-	// 	}
-	// 	return line;
-	// }
+	std::string filterLineBL(std::string & line){
+		const std::string filter = "0123456789/*-+.`~!@#$%^&*()_-=[]{}\\|\'\":;<>?,.";
+		for (int i = 0; i < filter.size(); i++){
+			replace(line.begin(), line.end(), filter.at(i), ' ');
+		}
+		std::transform(line.begin(), line.end(), line.begin(), ::tolower);
+		return line;
+	}
 };
 
 #endif
